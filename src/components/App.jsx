@@ -6,7 +6,7 @@ import reduxThunk from 'redux-thunk';
 
 import reducers from '../reducers';
 import Home from './Home';
-import Board from './auth/Board';
+import Board from './Board';
 
 const App = () => {
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__  || compose;
