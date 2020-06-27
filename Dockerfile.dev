@@ -1,0 +1,10 @@
+FROM node:alpine
+ENV REACT_APP_URL_API=http://localhost:4000
+WORKDIR '/app'
+
+COPY package.json .
+RUN npm install
+
+COPY . .
+
+CMD ["npm", "run", "start"]
