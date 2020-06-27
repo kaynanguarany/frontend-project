@@ -1,9 +1,11 @@
-import React, { Component } from "react";
-import { Container, Card, InputGroup, FormControl, Button, Alert, Overlay, Tooltip } from "react-bootstrap";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { Container, Card, InputGroup, FormControl, Button, Alert, Overlay, Tooltip } from 'react-bootstrap';
+import { connect } from 'react-redux';
 import _ from 'lodash';
 
-import { urlChanged, sendUrl } from "../actions/";
+import Header from './Header';
+import { urlChanged, sendUrl } from '../actions/';
+import './Home.css'
 
 class Home extends Component {
   state = { copySucess: false }
@@ -12,66 +14,74 @@ class Home extends Component {
 
   copyToClickBoard = () => {
     this.input.select()
-    document.execCommand("copy")
+    document.execCommand('copy')
     this.setState({copySuccess: true})
   }
 
   render() {
-    const { url, sendUrl, shortened_url, errors } = this.props;
+    const { url, loading, shortened_url, errors, sendUrl } = this.props;
 
     return (
-      <Container>
-        <Card>
-          <Card.Body>
-            <Card.Title>Paste the URL to be shortened</Card.Title>
-            <InputGroup className="mb-3">
-              <FormControl
-                placeholder="Enter the link here"
-                aria-label="Enter the link here"
-                aria-describedby="basic-addon2"
-                value={url}
-                onChange={this.handleChange}
-              />
-              <InputGroup.Append>
-                <Button variant="primary" onClick={sendUrl}>Shorten URL</Button>
-              </InputGroup.Append>
-            </InputGroup>
-            {
-              _.isEmpty(errors)
-              ? null
-              :
-              errors.map((error, idx) =>  <Alert key={idx} variant='danger'>{error}</Alert>)
-            }
-          </Card.Body>
-        </Card>
-        {
-          _.isEmpty(shortened_url)
-          ? null
-          :
-          <Card>
+      <div>
+        <Header />
+        <Container className='container-sm'>
+          <div className='text-center home-title'>
+            <h1>URL Shortener</h1>
+          </div>
+          <Card className='card-input'>
             <Card.Body>
-              <Card.Title>Your shortened URL</Card.Title>
+              <Card.Title className='text-center'>Paste the URL to be shortened</Card.Title>
               <InputGroup className="mb-3">
                 <FormControl
-                  ref={(input) => this.input = input}
+                  placeholder="Enter the link here"
+                  aria-label="Enter the link here"
                   aria-describedby="basic-addon2"
-                  value={shortened_url.url}
+                  value={url}
+                  onChange={this.handleChange}
                 />
                 <InputGroup.Append>
-                  <Button variant="primary" onClick={this.copyToClickBoard}>Copy URL</Button>
+                  <Button variant="primary" disabled={loading} onClick={sendUrl}>
+                    {loading ? 'Loading' : 'Shorten URL'}
+                  </Button>
                 </InputGroup.Append>
-                <Overlay show={true} placement="right">
-                  {(props) => (
-                    <Tooltip id="overlay-example" {...props}>
-                      My Tooltip
-                    </Tooltip>
-                  )}
-                </Overlay>
               </InputGroup>
+              {
+                _.isEmpty(errors)
+                ? null
+                :
+                errors.map((error, idx) =>  <Alert key={idx} variant='danger'>{error}</Alert>)
+              }
             </Card.Body>
           </Card>
-        }
-      </Container>
+          {
+            _.isEmpty(shortened_url)
+            ? null
+            :
+            <Card className='card-input'>
+              <Card.Body>
+                <Card.Title className='text-center'>Your shortened URL</Card.Title>
+                <InputGroup className="mb-3">
+                  <FormControl
+                    ref={(input) => this.input = input}
+                    aria-describedby="basic-addon2"
+                    value={shortened_url.url}
+                  />
+                  <InputGroup.Append>
+                    <Button variant="primary" onClick={this.copyToClickBoard}>Copy URL</Button>
+                  </InputGroup.Append>
+                  <Overlay show={true} placement="right">
+                    {(props) => (
+                      <Tooltip id="overlay-example" {...props}>
+                        My Tooltip
+                      </Tooltip>
+                    )}
+                  </Overlay>
+                </InputGroup>
+              </Card.Body>
+            </Card>
+          }
+        </Container>
+      </div>
     );
   }
 }

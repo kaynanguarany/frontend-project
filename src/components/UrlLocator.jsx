@@ -10,13 +10,17 @@ class UrlLocator extends Component {
   componentDidMount = () => {
     const { urlCode } = this.props.match.params;
 
-    this.props.searchUrl(urlCode);
+    if (!this.isBoard()) { this.props.searchUrl(urlCode) }
   }
+
+  isBoard = () => (this.props.match.params.urlCode === 'board')
 
   render() {
     const { loading, found, shortened_url } = this.props;
 
     if (loading) { return null }
+
+    if (this.isBoard()) { return null }
 
     if (found) {
       window.location.href = shortened_url.destination_url

@@ -1,9 +1,11 @@
-import React, { Component } from "react";
-import { Container, Card, Table } from "react-bootstrap";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { Container, Card, Table } from 'react-bootstrap';
+import { connect } from 'react-redux';
 import _ from 'lodash';
 
-import { fetchList } from "../actions/";
+import Header from './Header';
+import { fetchList } from '../actions/';
+import './Board.css'
 
 class Board extends Component {
 
@@ -13,40 +15,43 @@ class Board extends Component {
     const { list } = this.props;
 
     return (
-      <Container>
-        <Card>
-         <Card.Body>
-            <Card.Title>100 Most accessed URLs</Card.Title>
-            <Table striped bordered hover>
-              <thead>
-                <tr>
-                  <th>URL</th>
-                  <th>Shortened URL</th>
-                  <th>Quantity</th>
-                </tr>
-              </thead>
+      <div>
+        <Header />
+        <Container>
+          <div className='text-center board-title'>
+            <h2>100 most frequently accessed URLs</h2>
+          </div>
+        
+              <Table striped bordered hover>
+                <thead>
+                  <tr>
+                    <th>Shortened URL</th>
+                    <th>URL</th>
+                    <th>Quantity</th>
+                  </tr>
+                </thead>
 
-              <tbody>
-                { list.map((item, idx) => {
-                  return (
-                    <tr key={idx}>
-                      <td align='center'>
-                        <a href={item.destination_url} target='_blank' rel='noopener noreferrer'>
-                          {item.destination_url}
-                        </a>
-                      </td>
-                      <td align='center'>
-                        <a href={item.url} target='_blank' rel='noopener noreferrer'>{item.url}</a>
-                      </td>
-                      <td>{item.access_count}</td>
-                    </tr>
-                  )
-                })}
-              </tbody>
-            </Table>
-          </Card.Body>
-        </Card>
-      </Container>
+                <tbody>
+                  { list.map((item, idx) => {
+                    return (
+                      <tr key={idx}>
+                        <td>
+                          <a href={item.url} target='_blank' rel='noopener noreferrer'>{item.url}</a>
+                        </td>
+                        <td>
+                          <a href={item.destination_url} target='_blank' rel='noopener noreferrer'>
+                            {item.destination_url}
+                          </a>
+                        </td>
+                        <td>{item.access_count}</td>
+                      </tr>
+                    )
+                  })}
+                </tbody>
+              </Table>
+           
+        </Container>
+      </div>
     );
   }
 }

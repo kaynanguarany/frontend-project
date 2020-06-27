@@ -8,6 +8,7 @@ import reducers from '../reducers';
 import Home from './Home';
 import Board from './Board';
 import UrlLocator from './UrlLocator';
+import './App.css'
 
 const App = () => {
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__  || compose;
