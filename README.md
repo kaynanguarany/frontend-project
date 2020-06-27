@@ -24,4 +24,4 @@ Note: To run the app in the development enviroment, `docker-compose` use `Docker
 
 The app is hosted on AWS Beanstalk, working inside a `DOCKER` enviroment. In order to execute the deploy, AWS Beanstalk uses the `Dockerfile` file.
 
-App link: ...
+App link: http://shortenedurlfront-env.eba-c3fmpmgh.sa-east-1.elasticbeanstalk.com/
