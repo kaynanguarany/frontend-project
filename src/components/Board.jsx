@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Spinner, Table } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import _ from 'lodash';
 
 import Header from './Header';
 import { fetchList } from '../actions/';

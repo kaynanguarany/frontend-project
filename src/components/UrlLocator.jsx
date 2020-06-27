@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { Container, Card, Table } from "react-bootstrap";
+import { Container, Card } from "react-bootstrap";
 import { connect } from "react-redux";
-import _ from 'lodash';
 
 import { searchUrl } from "../actions/";
 
