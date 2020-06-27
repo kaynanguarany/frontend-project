@@ -7,6 +7,7 @@ import reduxThunk from 'redux-thunk';
 import reducers from '../reducers';
 import Home from './Home';
 import Board from './Board';
+import UrlLocator from './UrlLocator';
 
 const App = () => {
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__  || compose;
@@ -20,7 +21,8 @@ const App = () => {
     <Provider store={store}>
       <BrowserRouter>
         <Route path='/' exact component={Home} />
-        <Route path='/board' component={Board} />
+        <Route path='/board' exact component={Board} />
+        <Route path='/:urlCode' component={UrlLocator} />
       </BrowserRouter>
     </Provider>
   )

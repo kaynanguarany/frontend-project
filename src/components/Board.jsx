@@ -30,8 +30,14 @@ class Board extends Component {
                 { list.map((item, idx) => {
                   return (
                     <tr key={idx}>
-                      <td align='center'><a href={item.destination_url} target='_blank'>{item.destination_url}</a></td>
-                      <td align='center'><a href={item.url} target='_blank'>{item.url}</a></td>
+                      <td align='center'>
+                        <a href={item.destination_url} target='_blank' rel='noopener noreferrer'>
+                          {item.destination_url}
+                        </a>
+                      </td>
+                      <td align='center'>
+                        <a href={item.url} target='_blank' rel='noopener noreferrer'>{item.url}</a>
+                      </td>
                       <td>{item.access_count}</td>
                     </tr>
                   )
