@@ -1,4 +1,4 @@
-import React, { Component, createRef } from "react";
+import React, { Component } from "react";
 import { Container, Card, InputGroup, FormControl, Button, Alert, Overlay, Tooltip } from "react-bootstrap";
 import { connect } from "react-redux";
 import _ from 'lodash';
@@ -18,7 +18,6 @@ class Home extends Component {
 
   render() {
     const { url, sendUrl, shortened_url, errors } = this.props;
-    const { copySucess } = this.state;
 
     return (
       <Container>

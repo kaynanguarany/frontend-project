@@ -6,7 +6,7 @@ import {
   SUCCESS_URL
 } from "./types";
 
-const URL_API = 'http://localhost:4000'
+const URL_API = process.env.REACT_APP_URL_API;
 
 const savingUrl = dispatch => dispatch({ type: SAVING_URL });
 const successUrl = (dispatch, shortened_url) => dispatch({ type: SUCCESS_URL, shortened_url });
